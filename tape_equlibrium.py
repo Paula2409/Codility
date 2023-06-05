@@ -12,3 +12,4 @@ def solution(A):
       minimal_d.append(minimal_difference)
       sum_second = 0
   return min(minimal_d)
+
