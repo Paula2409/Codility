@@ -33,15 +33,30 @@ N is an integer within the range [0..400,000];
 each element of array A is an integer within the range [0..200,000]."""
 
 def solution(A):
+
+    # Analizamos si el array esta vacio
     if A == []:
         return 0
 
+    # Inicializamos las variables valor maximo, valor minimo de compra, y la sumatoria de la venta
     max_profit = 0
-    start_value = A.index(min(A)) 
+    buy_min = A[0]
+    sell = 0
 
-    for i in range(start_value,len(A)):
-        max_profit = max(max_profit,A[i] - min(A))
+    # Recorremos el array tomando como partida el minimo que se encuentre
+    for i in range(1,len(A)):
+        if A[i] < buy_min:
+          buy_min = A[i]
+          sell = 0
+
+        else:
+          sell += A[i] - A[i-1]
+
+        # Chequemos si la sumatoria de venta es mayor que el maximo actual
+        if max_profit < sell:
+          max_profit = sell
     
+    # Si encontramos ganancias
     if max_profit > 0:
         return max_profit
     else:
